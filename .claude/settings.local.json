@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:isnowfriend.com)",
+      "WebFetch(domain:duk.tw)",
+      "WebFetch(domain:keybox.cc)",
+      "WebFetch(domain:coursebloom-space.vercel.app)",
+      "mcp__chrome-devtools__new_page",
+      "mcp__chrome-devtools__take_screenshot",
+      "WebSearch",
+      "mcp__chrome-devtools__evaluate_script",
+      "mcp__chrome-devtools__navigate_page"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

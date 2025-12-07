@@ -162,7 +162,7 @@
         margin-right: 10px;
       }
 
-      /* ========== 關於我 - 簡化版 ========== */
+      /* ========== 關於我 - 雙欄版 ========== */
       .about-section {
         background: var(--bg-white);
       }
@@ -178,6 +178,112 @@
         color: var(--text-muted);
         margin-bottom: 12px;
         line-height: 1.8;
+      }
+
+      /* 工作經歷卡片 */
+      .experience-card {
+        background: var(--bg-light);
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid var(--border-color);
+        height: 100%;
+      }
+
+      .experience-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .experience-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--primary-light);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .experience-title h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 4px;
+      }
+
+      .experience-title .company {
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        font-weight: 500;
+      }
+
+      .experience-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 16px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .experience-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .experience-meta i {
+        color: var(--primary-color);
+        font-size: 0.75rem;
+      }
+
+      .experience-duties {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .experience-duties li {
+        position: relative;
+        padding-left: 16px;
+        margin-bottom: 8px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      .experience-duties li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 6px;
+        height: 6px;
+        background: var(--primary-color);
+        border-radius: 50%;
+      }
+
+      .experience-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .experience-tags span {
+        background: var(--bg-white);
+        color: var(--text-muted);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.7rem;
+        border: 1px solid var(--border-color);
       }
 
       /* ========== Side Project - 清新風格 ========== */
@@ -611,15 +717,49 @@
       </div>
     </section>
 
-    <!-- 關於我 - 簡化版 -->
+    <!-- 關於我 - 雙欄版 -->
     <section id="about-me" class="section-wrapper about-section" data-aos="fade-up">
       <div class="container">
         <h1 class="section-title">關於我</h1>
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-8 text-center">
-            <div class="about-content">
+        <div class="row g-4 align-items-stretch">
+          <!-- 左側：自我介紹 -->
+          <div class="col-12 col-lg-6">
+            <div class="about-content h-100 d-flex flex-column justify-content-center">
               <h2>喜歡學習、分享知識的愉悅</h2>
               <p>平常寫一些 JS 腳本，也會寫文章分享前端的知識與概念。</p>
+              <p>熱衷於前端開發與網頁優化，持續精進技術並樂於分享所學。</p>
+            </div>
+          </div>
+          <!-- 右側：工作經歷 -->
+          <div class="col-12 col-lg-6">
+            <div class="experience-card">
+              <div class="experience-header">
+                <div class="experience-icon">
+                  <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="experience-title">
+                  <h4>前端工程師</h4>
+                  <span class="company">普拉瑞斯創意整合有限公司 · 兼職</span>
+                </div>
+              </div>
+              <div class="experience-meta">
+                <span><i class="fas fa-calendar-alt"></i> 2025/06 - 2025/11 · 6 個月</span>
+                <span><i class="fas fa-map-marker-alt"></i> 臺中市, 台灣</span>
+              </div>
+              <ul class="experience-duties">
+                <li>客製化網站切版 (HTML + Tailwind CSS + jQuery)</li>
+                <li>使用 @media query 手刻 RWD 響應式網頁</li>
+                <li>套版版面調整與修改</li>
+                <li>依照 SEO 需求撰寫文件、調整網頁架構 (sitemap、htaccess)</li>
+                <li>網頁載入速度優化、架構維護 (hreflang 標籤、提升 PSI 評分)</li>
+              </ul>
+              <div class="experience-tags">
+                <span>HTML</span>
+                <span>Tailwind CSS</span>
+                <span>jQuery</span>
+                <span>RWD</span>
+                <span>SEO</span>
+              </div>
             </div>
           </div>
         </div>
