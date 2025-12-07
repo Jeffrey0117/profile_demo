@@ -1,743 +1,1014 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>個人履歷</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* ========== 清新配色方案 ========== */
+      :root {
+        --primary-color: #10B981;      /* 清新青綠 */
+        --primary-light: #D1FAE5;      /* 淺青綠背景 */
+        --secondary-color: #3B82F6;    /* 柔和藍 */
+        --accent-color: #8B5CF6;       /* 淡紫強調 */
+        --dark-bg: #111827;            /* 深色區塊 */
+        --text-dark: #374151;          /* 主文字色 */
+        --text-muted: #9CA3AF;         /* 次要文字 */
+        --bg-white: #FFFFFF;
+        --bg-light: #F9FAFB;           /* 淺灰背景 */
+        --border-color: #E5E7EB;
+        --section-spacing: 80px;
+        --transition-base: all 0.3s ease;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* ========== 導覽列 ========== */
+      .navbar {
+        background: var(--bg-white) !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        padding: 12px 0;
+        transition: var(--transition-base);
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--primary-color) !important;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        padding: 8px 16px !important;
+        transition: var(--transition-base);
+        border-radius: 6px;
+        margin: 0 2px;
+      }
+
+      .nav-link:hover, .nav-link.active {
+        color: var(--primary-color) !important;
+        background: var(--primary-light);
+      }
+
+      /* ========== Hero Section - 清新風格 ========== */
+      .hero-section {
+        background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        padding: 120px 0 80px;
+        min-height: auto;
+      }
+
+      .hero-section-row {
+        min-height: 300px;
+      }
+
+      .hero-text {
+        text-align: left;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        color: var(--text-muted);
+      }
+
+      .hero-text h1 {
+        color: var(--text-dark);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .hero-text h1 span {
+        color: var(--primary-color);
+      }
+
+      .hero-text h3 {
+        color: var(--primary-color);
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .hero-text .btn-hero {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: var(--transition-base);
+      }
+
+      .hero-text .btn-hero:hover {
+        background: #059669;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      }
+
+      .img-avantar {
+        border-radius: 20px;
+        width: 200px;
+        height: 200px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        border: 4px solid var(--bg-white);
+        object-fit: cover;
+      }
+
+      /* ========== 區塊間距統一 ========== */
+      .section-wrapper {
+        padding: var(--section-spacing) 0;
+        position: relative;
+      }
+
+      .section-title {
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: var(--text-dark);
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .section-title i {
+        color: var(--primary-color);
+        margin-right: 10px;
+      }
+
+      /* ========== 關於我 - 簡化版 ========== */
+      .about-section {
+        background: var(--bg-white);
+      }
+
+      .about-content h2 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 16px;
+      }
+
+      .about-content p {
+        color: var(--text-muted);
+        margin-bottom: 12px;
+        line-height: 1.8;
+      }
+
+      /* ========== Side Project - 清新風格 ========== */
+      .side-project {
+        background: var(--bg-light);
+        padding: var(--section-spacing) 0;
+      }
+
+      .side-project .section-title {
+        color: var(--text-dark);
+        margin-bottom: 16px;
+      }
+
+      .side-project .section-subtitle {
+        color: var(--text-muted);
+        font-size: 1rem;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .project-card {
+        background: var(--bg-white);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid var(--border-color);
+        height: 100%;
+        text-decoration: none;
+        display: block;
+      }
+
+      .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        border-color: var(--primary-color);
+      }
+
+      .project-card-img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        background: var(--bg-light);
+        transition: transform 0.3s ease;
+      }
+
+      .project-card:hover .project-card-img {
+        transform: scale(1.02);
+      }
+
+      .project-card-body {
+        padding: 20px;
+      }
+
+      .project-card-title {
+        color: var(--text-dark);
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .project-card-title i {
+        font-size: 0.75rem;
+        margin-left: 6px;
+        color: var(--primary-color);
+      }
+
+      .project-card-desc {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 14px;
+      }
+
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .tech-tag {
+        background: var(--primary-light);
+        color: var(--primary-color);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.7rem;
+        font-weight: 500;
+      }
+
+      .tech-tag.frontend {
+        background: #EDE9FE;
+        color: #7C3AED;
+      }
+
+      .tech-tag.backend {
+        background: #DBEAFE;
+        color: #2563EB;
+      }
+
+      .tech-tag.tool {
+        background: #FEF3C7;
+        color: #D97706;
+      }
+
+      .project-features {
+        display: none;
+      }
+
+      /* ========== 文章區塊 - 簡潔低調 ========== */
+      .articles-section {
+        background: var(--bg-white);
+        padding: 60px 0;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .articles-section .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+      }
+
+      .article-group {
+        background: var(--bg-light);
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid var(--border-color);
+      }
+
+      .article-group h5 {
+        color: var(--text-dark);
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .article-group h5 i {
+        color: var(--primary-color);
+      }
+
+      .article-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .article-links a {
+        display: inline-block;
+        padding: 6px 12px;
+        background: var(--bg-white);
+        color: var(--text-muted);
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        border: 1px solid var(--border-color);
+        transition: all 0.2s ease;
+      }
+
+      .article-links a:hover {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+        background: var(--primary-light);
+      }
+
+      /* ========== 摺疊區塊樣式 ========== */
+      .collapsible-section {
+        padding: 60px 0;
+        background: var(--bg-white);
+      }
+
+      .collapsible-section:nth-child(even) {
+        background: var(--bg-light);
+      }
+
+      .collapse-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 14px 24px;
+        background: var(--bg-white);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        cursor: pointer;
+        transition: var(--transition-base);
+      }
+
+      .collapse-toggle-btn:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .collapse-toggle-btn .collapse-hint {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: var(--text-muted);
+      }
+
+      .collapse-toggle-btn .arrow-icon {
+        font-size: 0.85rem;
+        transition: transform 0.3s ease;
+        color: var(--primary-color);
+      }
+
+      .collapse-toggle-btn[aria-expanded="true"] .arrow-icon {
+        transform: rotate(180deg);
+      }
+
+      .collapse-content {
+        padding-top: 30px;
+      }
+
+      /* ========== 作品卡片樣式 ========== */
+      .work-card {
+        background: var(--bg-white);
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        transition: var(--transition-base);
+        height: 100%;
+      }
+
+      .work-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        border-color: var(--primary-color);
+      }
+
+      .work-card-body {
+        padding: 16px;
+      }
+
+      .work-card h5 {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+      }
+
+      .work-card p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+        line-height: 1.5;
+      }
+
+      .work-card a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--primary-color);
+        font-weight: 500;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: var(--transition-base);
+      }
+
+      .work-card a:hover {
+        gap: 10px;
+      }
+
+      .hover-card {
+        position: relative;
+        overflow: hidden;
+        background: var(--bg-light);
+      }
+
+      .hover-card img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        transition: var(--transition-base);
+      }
+
+      .hover-card:hover img {
+        opacity: 0.9;
+        transform: scale(1.03);
+      }
+
+      /* ========== Footer ========== */
+      footer {
+        background: var(--bg-light);
+        border-top: 1px solid var(--border-color);
+        color: var(--text-muted);
+        padding: 30px 0;
+        text-align: center;
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 0.85rem;
+      }
+
+      /* ========== 響應式設計 ========== */
+      @media (max-width: 991px) {
+        :root {
+          --section-spacing: 60px;
+        }
+
+        .hero-section {
+          padding: 90px 0 50px;
+        }
+
+        .hero-section-row {
+          min-height: auto;
+        }
+
+        .hero-text h1 {
+          font-size: 1.8rem;
+        }
+
+        .hero-text h3 {
+          font-size: 1.3rem;
+        }
+
+        .img-avantar {
+          width: 150px;
+          height: 150px;
+        }
+
+        .section-title {
+          font-size: 1.6rem;
+        }
+
+        .project-card-img {
+          height: 180px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        :root {
+          --section-spacing: 50px;
+        }
+
+        .hero-text h1 {
+          font-size: 1.5rem;
+        }
+
+        .hero-text h3 {
+          font-size: 1.1rem;
+        }
+
+        .img-avantar {
+          width: 120px;
+          height: 120px;
+        }
+
+        .about-links {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .collapse-toggle-btn {
+          font-size: 1.1rem;
+          padding: 14px 24px;
+        }
+
+        .project-card-body {
+          padding: 16px;
+        }
+
+        .work-card-body {
+          padding: 16px;
+        }
+      }
+    </style>
   </head>
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-  <style>
-    /* 背景圖案設定 */
-    .hero-section {
-      background-image: url("https://images.pexels.com/photos/1480690/pexels-photo-1480690.jpeg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: 0px -300px;
-      background-attachment: fixed;
-    }
-    /* hero-section的高度設定 */
-    .hero-section-row {
-      height: 800px;
-    }
-
-    /* 英雄區位置調整 */
-    .hero-text {
-      color: white;
-      width: 50%;
-      text-align: start;
-      transform: translateX(75%);
-    }
-    /* 英雄區文字設計 */
-    .hero-text h1 {
-      color: red;
-    }
-
-    .hero-text h3 {
-      color: aqua;
-    }
-
-    .center {
-      margin-left: 100px;
-    }
-
-    /* 英雄區按鈕設計 */
-    .hero-text button {
-      border-radius: 8px;
-      background-color: red;
-      padding: 15px;
-      box-shadow: 3px 3px 10px black;
-      color: aliceblue;
-    }
-
-    .button-section i {
-      font-size: 30px;
-      color: brown;
-      margin-left: 15px;
-      vertical-align: middle;
-    }
-
-    /* 大頭貼設計 */
-    .img-avantar {
-      border-radius: 50%;
-      width: 300px;
-      height: 300px;
-      box-shadow: 8px 8px 45px rgb(173, 170, 170);
-    }
-
-    /* 技能條 */
-    .skill-bar progress {
-      color: red;
-      width: 600px;
-      margin-bottom: 20px;
-    }
-
-    /* 技能條文字 */
-    .skill-bar label {
-      font-size: 25px;
-      font-weight: 600;
-    }
-
-    /* icon設計 */
-    .whatIdo i {
-      font-size: 40px;
-      color: rgb(250, 45, 45);
-      margin: 40px;
-    }
-
-    /* 作品圖片大小設計 */
-    .mywork img {
-      margin-top: 5px;
-      width: 100%;
-      height: 250px;
-      box-shadow: 5px 5px 15px black;
-    }
-
-    /* 作品介紹設計 */
-    .mywork p {
-      margin-top: 15px;
-    }
-
-    /* 作品浮動 */
-    .mywork .col-12:hover {
-      transform: translateY(-3%);
-      transition: 0.5s ease;
-    }
-
-    /* 雇用我區塊設計 */
-    .hireME {
-      font-weight: 700;
-      background-color: rgb(255, 130, 130);
-      color: white;
-    }
-
-    .hireME button {
-      width: 110px;
-      margin: 0 auto;
-      padding: 5px;
-      border: 1px solid white;
-      background-color: rgb(255, 130, 130) !important;
-    }
-
-    /* 聯絡我的圖示 */
-    .contactME i {
-      font-size: 30px;
-      color: rgb(255, 25, 25);
-      float: left;
-      margin-right: 50px;
-    }
-
-    .contactME p {
-      margin-left: 80px;
-    }
-
-    .contactME input,
-    .contactME textarea {
-      width: 100%;
-      margin-bottom: 25px;
-      border: none;
-      padding: 17px;
-    }
-
-    .contactME input {
-      height: 40px;
-    }
-    .contactME textarea {
-      resize: none;
-    }
-
-    /* 調整按鈕行動呼籲 */
-    .btn-getUp:hover {
-      transform: translateY(-5px);
-      transition: 0.3s ease;
-    }
-
-    /* hover效果製作 */
-    /* 設定圖片 */
-    .hover-card {
-      position: relative;
-      margin: 10px;
-      background: rgb(161, 160, 160);
-    }
-
-    /* 設定邊框的位置 */
-    .hover-card::before,
-    .hover-card::after {
-      content: "";
-      position: absolute;
-      top: 20px;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      opacity: 1;
-      transition: transform ease-in-out 250ms;
-    }
-
-    /* 產生上下邊框 但先縮到最小 */
-    .hover-card::before {
-      border-top: 1px solid rgb(255, 255, 255);
-      border-bottom: 1px solid rgb(255, 255, 255);
-      transform: scale(0, 1);
-    }
-
-    /* 產生左右邊框 但先縮到最小 */
-    .hover-card::after {
-      border-left: 1px solid rgb(255, 255, 255);
-      border-right: 1px solid rgb(255, 255, 255);
-      transform: scale(1, 0);
-    }
-
-    /* 滑鼠滑到.hover-card 然後before元素產生上下動畫 */
-    .hover-card:hover::before {
-      transform: scale(1.05, 1);
-    }
-
-    /* 滑鼠滑到.hover-card 然後after元素產生左右動畫 */
-    .hover-card:hover::after {
-      transform: scale(1, 1.05);
-    }
-
-    .hover-card:hover > img {
-      opacity: 0.4;
-    }
-  </style>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-    crossorigin="anonymous"
-  />
   <body>
-    <!-- 導覽列開始 -->
-    <div class="bs-nav">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">履歷網頁</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse child-float"
-            id="navbarSupportedContent"
-          >
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">首頁</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about-me">關於我</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#script">腳本系列</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#concept">前端觀念</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#work">切版作品</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#else">其他練習</a>
-              </li>
-            </ul>
-          </div>
+    <!-- 導覽列 -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">履歷網頁</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">首頁</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about-me">關於我</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#side-project">Side Project</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#articles">文章</a>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </div>
-    <!-- 導覽列結束 -->
-    <!-- hero section開始 -->
-    <div class="hero-section" data-aos="fade-right">
-      <div class="container-fluid text-center">
-        <div class="hero-section-row row g-3 d-flex align-items-center">
-          <!-- 欄位左邊6的區塊開始 -->
-          <div class="col-12 col-xl-6">
-            <div class="hero-text">
-              <p>哈囉，歡迎</p>
-              <h1>來到我的履歷！</h1>
-              <h3>我是姚均達</h3>
-              <p>1999年出生，2023就讀台南大學新尖兵前端班。</p>
-              <button type="button" class="btn btn-danger btn-getUp">
-                我的作品
-              </button>
-            </div>
-          </div>
-          <!-- 欄位左邊6的區塊結束 -->
-          <!-- 欄位右邊6的區塊開始 -->
-          <div class="hero-avantar col-12 col-xl-6">
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" data-aos="fade-up">
+      <div class="container">
+        <div class="hero-section-row row g-4 align-items-center justify-content-center">
+          <div class="col-12 col-md-5 col-lg-4 text-center order-md-2">
             <img
               class="img-avantar"
               src="https://i.imgur.com/oR8OWEv.png"
               referrerpolicy="no-referrer"
-              alt=""
+              alt="個人照片"
             />
           </div>
-          <!-- 欄位右邊6的區塊結束 -->
+          <div class="col-12 col-md-7 col-lg-5 order-md-1">
+            <div class="hero-text">
+              <p>哈囉，歡迎</p>
+              <h1>來到我的履歷</h1>
+              <h3>我是姚均達</h3>
+              <p>前端開發者，熱愛技術分享與創作</p>
+              <a href="#side-project" class="btn btn-hero">查看作品</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- hero section結束 -->
+    </section>
 
-    <!-- 關於我區塊開始 -->
-    <div id="about-me" class="about-me" data-aos="fade-up">
+    <!-- 關於我 - 簡化版 -->
+    <section id="about-me" class="section-wrapper about-section" data-aos="fade-up">
       <div class="container">
-        <div class="row g-3 mt-5 text-center">
-          <h1>關於我</h1>
-        </div>
-        <div class="row g-3 mt-2">
-          <div class="col-12 col-xl-6">
-            <div class="about-text">
-              <h2>喜歡學習、分享知識的愉悅！</h2>
-              <p>平常寫一些JS腳本，也會寫文章分享前端的知識與概念。</p>
-              <p>觀看人數突破九千人。</p>
-              <img
-                src="https://i.imgur.com/KFJwn89.png"
-                alt=""
-                class="center"
-                referrerpolicy="no-referrer"
-              />
-            </div>
-            <div class="d-flex justify-content-around">
-              <a href="https://github.com/Jeffrey0117">github連結</a>
-              <a
-                href="https://ithelp.ithome.com.tw/users/20134378/articles?page=1"
-                >IT幫文章連結</a
-              >
-              <a href="https://greasyfork.org/zh-TW/users/726285-phone-dr"
-                >greasyfork連結</a
-              >
-            </div>
-          </div>
-          <div class="col-12 col-xl-6">
-            <img
-              src="https://i.imgur.com/jqQeYEf.png"
-              class="img-fluid"
-              alt=""
-              referrerpolicy="no-referrer"
-            />
-          </div>
-        </div>
-        <div class="row g-3 mt-2">
-          <div id="script" class="col-12">
-            <div class="about-text text-center mt-5">
-              <h2>腳本系列教學文</h2>
-
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10310535"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >前端小試身手(1)--幫「發問/發文頁」新增"編輯"鈕～</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10310554"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >前端小試身手(2)--it幫跳轉到最佳解答</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10310642"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >前端小試身手(3)--增添系列文目錄</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10310865"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >前端小試身手(4)--it幫發文「一眼全覽」</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10310945"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >前端小試身手(5)-備份it幫的發問！</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10338052"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >前端小試身手(6)--IMG複製大師，懶人專用小腳本</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10338469"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >前端小試身手(7)--迷片靜音神隊友，讓你尷尬不再有！</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10338948"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >前端小試身手(8)--教你寫出「思想審查警衛」，過濾垃圾雜訊的利器！</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10339989"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >前端小試身手(9)--文章縮圖預覽(以codeLove論壇為例)</a
-                >
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div class="row g-3 mt-2">
-          <div class="col-12">
-            <div class="about-text text-center mt-5">
-              <h2>使用JS寫出實用腳本</h2>
-              <p>分享給人下載，其中下載量最高的腳本突破四千。</p>
-              <img
-                src="https://i.imgur.com/SpOg3ED.png"
-                class="img-fluid height-100"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
-            </div>
-          </div>
-          <div id="concept" class="col-12">
-            <div class="about-text text-center mt-5">
-              <h2>前端觀念教學文</h2>
-
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10311621"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】等待的轉圈圈效果 (1)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10311643"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】google五星評分的星星(2)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10311672"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】CSS-3D卡片翻轉效果(3)
-                  (今天難度頗高，想挑戰再進來！)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10311691"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】一句CSS做出好看的hero section！(4)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10311756"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】創造一個Skill bar(5)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10311999"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】遮蔽廣告(D卡未登入)腳本、自定義新增名單(6)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10312001"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】前端canvas截圖的招式！竟然有三招，可存成SVG或PNG
-                  (7)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10312046"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】讓你的PDF檔案更難被抓取(8)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10312056"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】哇操！你敢信？花式寫todo-list，body裡面一行都沒有也能搞？(9)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10312066"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】卡片製作，才不是！是卡片製作器！(10)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10312114"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】太屌了吧！？用Class(類)製作Jquery的效果！(11)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10312922"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  【前端動手玩創意】置頂按鈕，老梗經典｜帶你的網頁搭電梯(12)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10313063"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】動態生成的藝術｜小心，亂改DOM你可能會被打臉。(13)</a
-                >
-              </h5>
-              <h5>
-                <a
-                  href="https://ithelp.ithome.com.tw/articles/10313105"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >【前端動手玩創意】側邊超質感選單｜幫你的網頁多一點質感好嗎？(14)</a
-                >
-              </h5>
+        <h1 class="section-title">關於我</h1>
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8 text-center">
+            <div class="about-content">
+              <h2>喜歡學習、分享知識的愉悅</h2>
+              <p>平常寫一些 JS 腳本，也會寫文章分享前端的知識與概念。</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- 關於我區塊結束 -->
+    </section>
 
-    <!-- 作品區塊開始 -->
-    <div id="work" class="mywork" data-aos="fade-up">
+    <!-- Side Project - 重點區塊 -->
+    <section id="side-project" class="side-project" data-aos="fade-up">
       <div class="container">
-        <div class="row g-3 mt-5 mb-5 text-center">
-          <h1>切版網頁展示</h1>
-        </div>
-        <div class="row g-3">
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>陳七星按摩</h1>
-            <div class="hover-card">
+        <h1 class="section-title"><i class="fas fa-rocket"></i> Side Project 作品集</h1>
+        <p class="section-subtitle">獨立開發的實戰專案，展現前端技術與產品思維</p>
+        <div class="row g-4">
+          <!-- 友善時光 -->
+          <div class="col-12 col-md-6 col-xl-3">
+            <a href="http://isnowfriend.com/" target="_blank" class="project-card">
               <img
-                src="https://i.imgur.com/FQZyGls.jpg"
-                alt=""
-                referrerpolicy="no-referrer"
+                src="./screenshots/isnowfriend.png"
+                alt="友善時光折扣查詢"
+                class="project-card-img"
               />
-            </div>
-
-            <p>前端切版的基本網頁，使用boostrap，做出基本的排列。</p>
-            <a href="https://jeffrey0117.github.io/chen_7_star/">範例頁面</a>
+              <div class="project-card-body">
+                <h3 class="project-card-title">友善時光折扣查詢 <i class="fas fa-external-link-alt"></i></h3>
+                <p class="project-card-desc">
+                  便利商店實時折扣查詢工具，追蹤全家與 7-ELEVEN 的友善時光折扣時段。
+                </p>
+                <div class="project-features">
+                  <h6>主要功能</h6>
+                  <ul>
+                    <li>雙店家即時折扣狀態查詢</li>
+                    <li>秒級更新的倒數計時器</li>
+                    <li>內建商品價格折扣計算器</li>
+                  </ul>
+                </div>
+                <div class="tech-tags">
+                  <span class="tech-tag frontend">React</span>
+                  <span class="tech-tag frontend">CSS3</span>
+                  <span class="tech-tag frontend">RWD</span>
+                </div>
+              </div>
+            </a>
           </div>
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>rex教練頁面</h1>
-            <div class="hover-card">
-              <img
-                src="https://i.imgur.com/TrBIOGV.png"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
-            </div>
 
-            <p>使用影片當背景，配合Boostrap做出基本的切版網頁。</p>
-            <a href="https://jeffrey0117.github.io/RexCoatch_demo/">範例頁面</a>
+          <!-- 圖鴨上床 -->
+          <div class="col-12 col-md-6 col-xl-3">
+            <a href="https://duk.tw/" target="_blank" class="project-card">
+              <img
+                src="./screenshots/duk.png"
+                alt="圖鴨上床圖床服務"
+                class="project-card-img"
+              />
+              <div class="project-card-body">
+                <h3 class="project-card-title">圖鴨上床 duk.tw <i class="fas fa-external-link-alt"></i></h3>
+                <p class="project-card-desc">
+                  台灣免費圖床服務平台，支援拖曳上傳，自動生成 Markdown 與 HTML 語法。
+                </p>
+                <div class="project-features">
+                  <h6>主要功能</h6>
+                  <ul>
+                    <li>支援多種圖片格式上傳</li>
+                    <li>自動生成分享語法</li>
+                    <li>密碼保護與過期設定</li>
+                  </ul>
+                </div>
+                <div class="tech-tags">
+                  <span class="tech-tag frontend">Next.js</span>
+                  <span class="tech-tag backend">API</span>
+                  <span class="tech-tag tool">加密</span>
+                </div>
+              </div>
+            </a>
           </div>
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>nicole老師頁</h1>
-            <div class="hover-card">
-              <img
-                src="https://i.imgur.com/3Fa9Jmp.png"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
-            </div>
 
-            <p>基本的切版練習。</p>
-            <a href="https://jeffrey0117.github.io/Nicole_blog-demo/"
-              >範例頁面</a
-            >
+          <!-- KeyBox -->
+          <div class="col-12 col-md-6 col-xl-3">
+            <a href="https://keybox.cc/" target="_blank" class="project-card">
+              <img
+                src="./screenshots/keybox.png"
+                alt="KeyBox 內容解鎖平台"
+                class="project-card-img"
+              />
+              <div class="project-card-body">
+                <h3 class="project-card-title">KeyBox 內容解鎖 <i class="fas fa-external-link-alt"></i></h3>
+                <p class="project-card-desc">
+                  創作者內容解鎖與訂閱服務平台，用戶透過訂閱或付費解鎖瀏覽權限。
+                </p>
+                <div class="project-features">
+                  <h6>主要功能</h6>
+                  <ul>
+                    <li>創作者內容發布系統</li>
+                    <li>訂閱與內容解鎖機制</li>
+                    <li>會員權限管理</li>
+                  </ul>
+                </div>
+                <div class="tech-tags">
+                  <span class="tech-tag frontend">React</span>
+                  <span class="tech-tag backend">Supabase</span>
+                  <span class="tech-tag tool">GA4</span>
+                </div>
+              </div>
+            </a>
           </div>
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>異色檔案</h1>
-            <div class="hover-card">
-              <img
-                src="https://i.imgur.com/frMru20.jpg"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
-            </div>
 
-            <p>純手寫切版，基本練習。</p>
-            <a href="https://jeffrey0117.github.io/yisefile-demo/">範例頁面</a>
-          </div>
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>Cindy Sung頁面</h1>
-            <div class="hover-card">
+          <!-- 前端切板職人課程網 -->
+          <div class="col-12 col-md-6 col-xl-3">
+            <a href="https://coursebloom-space.vercel.app/htmlcat2025/" target="_blank" class="project-card">
               <img
-                src="https://i.imgur.com/6k32Mab.png"
-                alt=""
-                referrerpolicy="no-referrer"
+                src="./screenshots/coursebloom.png"
+                alt="前端切板職人課程網"
+                class="project-card-img"
               />
-            </div>
-
-            <p>純手寫切版，基本練習。</p>
-            <a href="https://jeffrey0117.github.io/Cindy_blog-demo/"
-              >範例頁面</a
-            >
+              <div class="project-card-body">
+                <h3 class="project-card-title">前端職人課程網 <i class="fas fa-external-link-alt"></i></h3>
+                <p class="project-card-desc">
+                  線上學習平台，專注於前端開發教育，提供課程與數位商品。
+                </p>
+                <div class="project-features">
+                  <h6>主要功能</h6>
+                  <ul>
+                    <li>線上課程播放追蹤</li>
+                    <li>數位商品即時下載</li>
+                    <li>響應式多裝置支援</li>
+                  </ul>
+                </div>
+                <div class="tech-tags">
+                  <span class="tech-tag frontend">Next.js</span>
+                  <span class="tech-tag frontend">SSR</span>
+                  <span class="tech-tag tool">Code Split</span>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
-    </div>
-    <div id="else" class="mywork" data-aos="fade-up">
+    </section>
+
+    <!-- 文章區塊 - 簡潔低調 -->
+    <section id="articles" class="articles-section" data-aos="fade-up">
       <div class="container">
-        <div class="row g-3 mt-5 mb-5 text-center">
-          <h1>其他練習</h1>
-        </div>
-        <div class="row g-3">
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>天空之城</h1>
-            <div class="hover-card">
-              <img
-                src="https://i.imgur.com/LTaVAbH.png"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
+        <h2 class="section-title"><i class="fas fa-pen-nib"></i> 技術文章</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-6">
+            <div class="article-group">
+              <h5><i class="fas fa-code"></i> 腳本系列教學</h5>
+              <div class="article-links">
+                <a href="https://ithelp.ithome.com.tw/articles/10310535" target="_blank">前端小試身手(1)</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10310554" target="_blank">前端小試身手(2)</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10310642" target="_blank">前端小試身手(3)</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10310865" target="_blank">前端小試身手(4)</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10310945" target="_blank">前端小試身手(5)</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10338052" target="_blank">前端小試身手(6)</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10338469" target="_blank">前端小試身手(7)</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10338948" target="_blank">前端小試身手(8)</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10339989" target="_blank">前端小試身手(9)</a>
+              </div>
             </div>
-
-            <p>
-              這是PS的作品，合成了天空之城，利用遮罩與陰影等完成海報的效果。
-            </p>
           </div>
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>Vue購物車</h1>
-            <div class="hover-card">
-              <img
-                src="https://i.imgur.com/rzRfH5j.png"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
+          <div class="col-12 col-md-6">
+            <div class="article-group">
+              <h5><i class="fas fa-lightbulb"></i> 前端觀念教學</h5>
+              <div class="article-links">
+                <a href="https://ithelp.ithome.com.tw/articles/10311621" target="_blank">轉圈圈效果</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10311643" target="_blank">五星評分</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10311672" target="_blank">3D卡片翻轉</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10311691" target="_blank">Hero Section</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10311756" target="_blank">Skill Bar</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10311999" target="_blank">遮蔽廣告</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10312001" target="_blank">Canvas截圖</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10312046" target="_blank">PDF防抓取</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10312056" target="_blank">Todo List</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10312066" target="_blank">卡片製作器</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10312114" target="_blank">Class效果</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10312922" target="_blank">置頂按鈕</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10313063" target="_blank">動態生成</a>
+                <a href="https://ithelp.ithome.com.tw/articles/10313105" target="_blank">側邊選單</a>
+              </div>
             </div>
-
-            <p>前端的作品，使用vue與boostrap把畫面渲染出來。</p>
-          </div>
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>即時聊天室</h1>
-            <div class="hover-card">
-              <img
-                src="https://i.imgur.com/FoZhfrV.png"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
-            </div>
-
-            <p>node.js的作品，使用後端搭配socket io的技術做出即時聊天室。</p>
-          </div>
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>後端資料庫</h1>
-            <div class="hover-card">
-              <img
-                src="https://i.imgur.com/TrFQVe0.png"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
-            </div>
-
-            <p>PHP的練習，結合mySQL把資料丟到後端，並且能夠把資料echo出來。</p>
-          </div>
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>ajax應用實戰</h1>
-            <div class="hover-card">
-              <img
-                src="https://i.imgur.com/MCkD9du.jpg"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
-            </div>
-
-            <p>
-              後端node.js的作品，使用axios的技術叫劍橋辭典的資料、圖庫，並用渲染出來，達成查單字附上圖片的效果。
-            </p>
-          </div>
-          <div class="col-12 col-xl-4 shadow p-3 mb-5 bg-body rounded">
-            <h1>JS腳本</h1>
-            <div class="hover-card">
-              <img
-                src="https://i.imgur.com/yVjzMZp.png"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
-            </div>
-
-            <p>
-              前端tampermonkey的JS腳本，使用localStorage的技術與setTimeout來設定時間自動備份文章。
-            </p>
           </div>
         </div>
       </div>
-    </div>
-    <!-- 作品區塊結束 -->
-    <!-- photoshop作品區塊開始 -->
+    </section>
 
-    <!-- photoshop作品區塊結束 -->
-
-    <hr />
-    <div class="container">
-      <div class="row g-3">
-        <div class="col-12 text-center">
-          <p>© 2023 Jquery lover</p>
+    <!-- 切版網頁展示 - 暫時隱藏
+    <section id="work" class="collapsible-section" data-aos="fade-up">
+      <div class="container">
+        <button
+          class="collapse-toggle-btn"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#workCollapse"
+          aria-expanded="false"
+          aria-controls="workCollapse"
+        >
+          <i class="fas fa-laptop-code"></i>
+          <span>切版網頁展示</span>
+          <span class="collapse-hint">- 點擊展開</span>
+          <i class="fas fa-chevron-down arrow-icon"></i>
+        </button>
+        <div class="collapse" id="workCollapse">
+          <div class="collapse-content">
+            <div class="row g-4">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/FQZyGls.jpg" alt="陳七星按摩" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>陳七星按摩</h5>
+                    <p>前端切版的基本網頁，使用 Bootstrap 做出基本的排列。</p>
+                    <a href="https://jeffrey0117.github.io/chen_7_star/" target="_blank" rel="noopener noreferrer">
+                      查看範例 <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/TrBIOGV.png" alt="Rex教練頁面" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>Rex 教練頁面</h5>
+                    <p>使用影片當背景，配合 Bootstrap 做出基本的切版網頁。</p>
+                    <a href="https://jeffrey0117.github.io/RexCoatch_demo/" target="_blank" rel="noopener noreferrer">
+                      查看範例 <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/3Fa9Jmp.png" alt="Nicole老師頁" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>Nicole 老師頁</h5>
+                    <p>基本的切版練習。</p>
+                    <a href="https://jeffrey0117.github.io/Nicole_blog-demo/" target="_blank" rel="noopener noreferrer">
+                      查看範例 <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/frMru20.jpg" alt="異色檔案" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>異色檔案</h5>
+                    <p>純手寫切版，基本練習。</p>
+                    <a href="https://jeffrey0117.github.io/yisefile-demo/" target="_blank" rel="noopener noreferrer">
+                      查看範例 <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/6k32Mab.png" alt="Cindy Sung頁面" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>Cindy Sung 頁面</h5>
+                    <p>純手寫切版，基本練習。</p>
+                    <a href="https://jeffrey0117.github.io/Cindy_blog-demo/" target="_blank" rel="noopener noreferrer">
+                      查看範例 <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+    -->
+
+    <!-- 其他練習 - 暫時隱藏
+    <section id="else" class="collapsible-section" data-aos="fade-up">
+      <div class="container">
+        <button
+          class="collapse-toggle-btn"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#elseCollapse"
+          aria-expanded="false"
+          aria-controls="elseCollapse"
+          style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);"
+        >
+          <i class="fas fa-flask"></i>
+          <span>其他練習</span>
+          <span class="collapse-hint">- 點擊展開</span>
+          <i class="fas fa-chevron-down arrow-icon"></i>
+        </button>
+        <div class="collapse" id="elseCollapse">
+          <div class="collapse-content">
+            <div class="row g-4">
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/LTaVAbH.png" alt="天空之城" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>天空之城</h5>
+                    <p>PS 作品，合成了天空之城，利用遮罩與陰影等完成海報效果。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/rzRfH5j.png" alt="Vue購物車" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>Vue 購物車</h5>
+                    <p>前端作品，使用 Vue 與 Bootstrap 把畫面渲染出來。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/FoZhfrV.png" alt="即時聊天室" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>即時聊天室</h5>
+                    <p>Node.js 作品，使用後端搭配 Socket.io 做出即時聊天室。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/TrFQVe0.png" alt="後端資料庫" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>後端資料庫</h5>
+                    <p>PHP 練習，結合 MySQL 把資料丟到後端並輸出。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/MCkD9du.jpg" alt="AJAX應用實戰" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>AJAX 應用實戰</h5>
+                    <p>Node.js 作品，使用 Axios 抓取劍橋辭典資料渲染。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="work-card">
+                  <div class="hover-card">
+                    <img src="https://i.imgur.com/yVjzMZp.png" alt="JS腳本" referrerpolicy="no-referrer" />
+                  </div>
+                  <div class="work-card-body">
+                    <h5>JS 腳本</h5>
+                    <p>Tampermonkey 腳本，使用 localStorage 自動備份文章。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>2024 姚均達 - 前端開發者</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 600,
+        once: true,
+        offset: 50
+      });
+    </script>
   </body>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"
-  ></script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
 </html>
